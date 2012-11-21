@@ -49,7 +49,10 @@ attribute :name, :kind_of => String, :name_attribute => true
 attribute :manual_command, :kind_of => [ String, NilClass ], :default => nil 
 attribute :path, :kind_of => String
 attribute :count, :kind_of => Integer
-attribute :size, :kind_of => String
+# size is number followed by bytes...kilobytes...etc
+attribute :size, :regex => /^[0-9]+[bkmg]$/
+# later should add now and never for period
+attribute :period, :regex => /^[0-9]+[hdwmy]$/
 attribute :copy, :default => true
 attribute :template, :kind_of => String
 
