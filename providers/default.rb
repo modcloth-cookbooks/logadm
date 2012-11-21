@@ -12,16 +12,12 @@ action :create do
 		cmd = new_resource.manual_command
 	else
 	  cmd = "logadm -w #{new_resource.name} #{new_resource.path}"
-
-		if new_resource.copy
-	  	cmd << " -c"
-	  end
-	  if new_resource.count
-	  	cmd << " -C#{new_resource.count}"
-	  end
-	  if new_resource.template
-	  	cmd << " -t #{new_resource.template}"
-	  end
+	  args = []
+  	args << "-c" if new_resource.copy
+  	args << " -C #{new_resource.count}" if new_resource.count
+  	args << " -s #{new_resource.size}" if new_resource.size
+    args << " -p #{new_resource.period}"	if new_resource.period
+    args << " -t #{new_resource.template}"	if new_resource.template
 	end
 
   execute "logadm add entry #{new_resource.name}" do
