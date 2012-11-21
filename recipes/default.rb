@@ -6,15 +6,21 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-logadm "chef-client" do
-	manual_command "logadm -r /var/log/chef/chef.client"
-	# path "/var/log/chef/client.log"
-	# copy false
-	action :delete	
-end
+# logadm "chef-client" do
+# 	manual_command "logadm -r /var/log/chef/chef.client"
+# 	# path "/var/log/chef/client.log"
+# 	# copy false
+# 	action 	
+# end
 
 logadm "chef-client" do
 	path "/var/log/chef/client.log"
-	copy false
-	action :delete	
+	copy true
+	size "1b"
+	period "7d"
+	action :create	
 end
+
+# logadm "chef-client" do
+# 	action :delete	
+# end
