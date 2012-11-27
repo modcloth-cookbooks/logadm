@@ -33,9 +33,10 @@ Manage logadm.
 - :path: path to log
 - :count: number of 
 - :size: size is number followed by bytes...kilobytes...etc
-- :period:
-- :copy:
-- :template:
+- :period: time period to rotate logs
+- :copy: copy and truncate
+- :template: template for naming of logs
+- :gzip: specify count of which log to start compressing ( default 1 )
 
 ### Providers
 
