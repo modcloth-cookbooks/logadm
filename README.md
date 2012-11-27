@@ -23,8 +23,8 @@ Manage logadm.
 
 ### Actions
 
-- :create: create a named log rule
-- :delete: delete a named log rul
+- :create: create a named log entry
+- :delete: delete a named log entry
 
 ### Attribute Parameters
 
