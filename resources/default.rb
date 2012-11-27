@@ -55,4 +55,5 @@ attribute :size, :regex => /^[0-9]+[bkmg]$/
 attribute :period, :regex => /^[0-9]+[hdwmy]$/
 attribute :copy, :default => true
 attribute :template, :kind_of => String
+attribute :gzip, :kind_of => Integer
 
