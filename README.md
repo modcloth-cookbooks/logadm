@@ -1,7 +1,7 @@
 Logadm Cookbook
 =================
-Provides a SmartOS Logadm resource to create/delete cron jobs for 
-log rotation and management
+Provides a `logadm` resource to create/delete cron jobs for log rotation
+and management.
 
 Requirements
 ============
@@ -11,13 +11,13 @@ Chef version 0.10.10+.
 Platform
 --------
 
-* SmartOS
+* SmartOS (presumably other SunOS)
 
 Resources/Providers
 ===================
 
 `logadm`
-----------
+--------
 
 Manage logadm.
 
@@ -48,41 +48,23 @@ Usage
 
 ### Examples
 
-    # create a logadm entry
-    logadm "chef-client" do
-      path "/var/log/chef/client.log"
-      copy true
-      size "1b"
-      period "7d"
-      action :create  
-    end
+``` ruby
+# create a logadm entry
+logadm "chef-client" do
+  path "/var/log/chef/client.log"
+  copy true
+  size "1b"
+  period "7d"
+  action :create  
+end
 
-    # nginx -C 5 -c -s 100m '/var/log/nginx/{access,error}.log'
-		logadm "nginx" do
-			path "/var/log/nginx/{localhost.access,error}.log"
-			copy true
-			size "100m"
-		  count 5
-		  gzip 1
-			action :create	
-		end
-
-
-License and Author
-==================
-
-- Author:: Stephen Lauck (<s.lauck@modcloth.com>)
-
-Copyright 2009-2012, Modcloth, Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+# nginx -C 5 -c -s 100m '/var/log/nginx/{access,error}.log'
+logadm "nginx" do
+  path "/var/log/nginx/{localhost.access,error}.log"
+  copy true
+  size "100m"
+  count 5
+  gzip 1
+  action :create	
+end
+```
