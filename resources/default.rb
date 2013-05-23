@@ -1,5 +1,26 @@
+# Copyright (c) 2013 ModCloth, Inc.
+#
+# MIT License
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+# of the Software, and to permit persons to whom the Software is furnished to do
+# so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
-# logadm -w /var/squid/logs/cache.log -C 8 -c -p 1d -t '/var/squid/logs/cache.log.$n' -z 1 
+# logadm -w /var/squid/logs/cache.log -C 8 -c -p 1d -t '/var/squid/logs/cache.log.$n' -z 1
 
 # Example 6 Rotating the apache Error and Access Logs
 
@@ -43,10 +64,10 @@
 
 actions :create, :delete
 
-default_action :create 
+default_action :create
 
 attribute :name, :kind_of => String, :name_attribute => true
-attribute :manual_command, :kind_of => [ String, NilClass ], :default => nil 
+attribute :manual_command, :kind_of => [String, NilClass], :default => nil
 attribute :path, :kind_of => String
 attribute :count, :kind_of => Integer
 # size is number followed by bytes...kilobytes...etc
@@ -56,4 +77,3 @@ attribute :period, :regex => /^[0-9]+[hdwmy]$/
 attribute :copy, :default => true
 attribute :template, :kind_of => String
 attribute :gzip, :kind_of => Integer
-
