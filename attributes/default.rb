@@ -22,41 +22,19 @@
 # SOFTWARE.
 #
 
-action :create do
-  if new_resource.manual_command
-    cmd = new_resource.manual_command
-  else
-    cmd = "logadm -w #{new_resource.name} '#{new_resource.path}'"
-    args = []
-    args << "-c" if new_resource.copy
-    args << " -C #{new_resource.count}" if new_resource.count
-    args << " -s #{new_resource.size}" if new_resource.size
-    args << " -p #{new_resource.period}"	if new_resource.period
-    args << " -t #{new_resource.template}"  if new_resource.template
-    args << " -z #{new_resource.gzip}"  if new_resource.gzip
-    cmd  << ' ' + args.join(' ')
-  end
+default['logadm']['write_conf_file'] = true
+default['logadm']['conf_file'] = '/etc/logadm.conf'
+default['logadm']['conf_file_template'] = 'logadm.conf.erb'
+default['logadm']['conf_file_cookbook'] = 'logadm'
 
-  Chef::Log.info("logadm command: #{cmd}")
+default['logadm']['enabled_patterns']['smf'] = true
+default['logadm']['enabled_patterns']['apache'] = false
+default['logadm']['enabled_patterns']['lighttpd'] = false
+default['logadm']['enabled_patterns']['nginx'] = false
+default['logadm']['enabled_patterns']['mysql'] = false
 
-  execute "logadm add entry #{new_resource.name}" do
-    command cmd
-  end
-
-  new_resource.updated_by_last_action(true)
-end
-
-action :delete do
-  if new_resource.manual_command
-    cmd = new_resource.manual_command
-  else
-    cmd = "logadm -r #{new_resource.name}"
-  end
-
-  execute "logadm delete entry #{new_resource.name}" do
-    only_if "logadm -V #{new_resource.name}"
-    command cmd
-  end
-
-  new_resource.updated_by_last_action(true)
-end
+default['logadm']['patterns']['smf'] = '-C 3 -c -s 1m /var/svc/log/*.log'
+default['logadm']['patterns']['apache'] = '-C 5 -c -s 100m /var/log/httpd/*.log'
+default['logadm']['patterns']['lighttpd'] = "-C 5 -c -s 100m '/var/log/lighttpd/{access,error}.log'"
+default['logadm']['patterns']['nginx'] = "-C 5 -c -s 100m '/var/log/nginx/{access,error}.log'"
+default['logadm']['patterns']['mysql'] = "-C 5 -c -s 100m '/var/log/mysql/{error,slowquery}.log'"

@@ -1,0 +1,30 @@
+# Dropped off by Chef for <%= node.name %>
+
+/var/adm/messages -C 4 -a 'kill -HUP `cat /var/run/*syslog*.pid`'
+/var/adm/pacct -C 0 -N -a '/usr/lib/acct/accton pacct' -g adm -m 664 -o adm -p never
+/var/cron/log -c -s 512k -t /var/cron/olog
+/var/fm/fmd/errlog -M '/usr/sbin/fmadm -q rotate errlog && mv /var/fm/fmd/errlog.0- $nfile' -N -s 2m
+/var/fm/fmd/fltlog -A 6m -M '/usr/sbin/fmadm -q rotate fltlog && mv /var/fm/fmd/fltlog.0- $nfile' -N -s 10m
+/var/log/pool/poold -N -a 'pkill -HUP poold; true' -s 512m
+/var/log/syslog -C 5 -a 'kill -HUP `cat /var/run/*syslog*.pid`' -s 100m
+/var/lp/logs/lpsched -C 2 -N -t '$file.$N'
+
+# Standard log files for authentication and mail
+/var/log/authlog -C 5 -a 'kill -HUP `cat /var/run/*syslog*.pid`' -s 100m
+/var/log/maillog -C 5 -a 'kill -HUP `cat /var/run/*syslog*.pid`' -s 100m
+
+<% if node['logadm']['enabled_patterns']['smf'] %>
+smf <%= node['logadm']['patterns']['smf'] %>
+<% end %>
+<% if node['logadm']['enabled_patterns']['apache'] %>
+apache <%= node['logadm']['patterns']['apache'] %>
+<% end %>
+<% if node['logadm']['enabled_patterns']['lighttpd'] %>
+lighttpd <%= node['logadm']['patterns']['lighttpd'] %>
+<% end %>
+<% if node['logadm']['enabled_patterns']['nginx'] %>
+nginx <%= node['logadm']['patterns']['nginx'] %>
+<% end %>
+<% if node['logadm']['enabled_patterns']['mysql'] %>
+mysql <%= node['logadm']['patterns']['mysql'] %>
+<% end %>
