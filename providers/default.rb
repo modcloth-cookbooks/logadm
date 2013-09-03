@@ -1,3 +1,4 @@
+#
 # Copyright (c) 2013 ModCloth, Inc.
 #
 # MIT License
@@ -19,6 +20,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+#
 
 action :create do
   if new_resource.manual_command
