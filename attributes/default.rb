@@ -22,7 +22,7 @@
 # SOFTWARE.
 #
 
-default['logadm']['write_conf_filea'] = true
+default['logadm']['write_conf_file'] = true
 default['logadm']['conf_file'] = '/etc/logadm.conf'
 default['logadm']['conf_file_template'] = 'logadm.conf.erb'
 default['logadm']['conf_file_cookbook'] = 'logadm'
