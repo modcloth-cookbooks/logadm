@@ -23,11 +23,12 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+#
 
-logadm "chef-client" do
-	path "/var/log/chef/client.log"
-	copy true
-	size "1b"
-	period "7d"
-	action :create	
+logadm 'chef-client' do
+  path '/var/log/chef/client.log'
+  copy true
+  size '1b'
+  period '7d'
+  action :create
 end
