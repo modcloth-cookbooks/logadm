@@ -1,4 +1,7 @@
 #
+# Cookbook Name:: logadm
+# Recipe:: chef-client
+#
 # Copyright (c) 2013 ModCloth, Inc.
 #
 # MIT License
@@ -22,41 +25,12 @@
 # SOFTWARE.
 #
 
-action :create do
-  if new_resource.manual_command
-    cmd = new_resource.manual_command
-  else
-    cmd = "logadm -w #{new_resource.name} '#{new_resource.path}'"
-    args = []
-    args << "-c" if new_resource.copy
-    args << " -C #{new_resource.count}" if new_resource.count
-    args << " -s #{new_resource.size}" if new_resource.size
-    args << " -p #{new_resource.period}"	if new_resource.period
-    args << " -t #{new_resource.template}"  if new_resource.template
-    args << " -z #{new_resource.gzip}"  if new_resource.gzip
-    cmd  << ' ' + args.join(' ')
-  end
+include_recipe 'logadm::default'
 
-  Chef::Log.info("logadm command: #{cmd}")
-
-  execute "logadm add entry #{new_resource.name}" do
-    command cmd
-  end
-
-  new_resource.updated_by_last_action(true)
-end
-
-action :delete do
-  if new_resource.manual_command
-    cmd = new_resource.manual_command
-  else
-    cmd = "logadm -r #{new_resource.name}"
-  end
-
-  execute "logadm delete entry #{new_resource.name}" do
-    only_if "logadm -V #{new_resource.name}"
-    command cmd
-  end
-
-  new_resource.updated_by_last_action(true)
+logadm 'chef-client' do
+  path '/var/log/chef/client.log'
+  copy true
+  size '1b'
+  period '7d'
+  action :create
 end
