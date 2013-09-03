@@ -1,3 +1,4 @@
 /.kitchen/
 /Gemfile.lock
 /Berksfile.lock
+/metadata.json
