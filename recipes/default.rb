@@ -31,3 +31,18 @@ template node['logadm']['conf_file'] do
   mode 0644
   only_if { node['logadm']['write_conf_file'] }
 end
+
+unless (rotated_logs = (node['logadm']['rotated_logs'] || {})).empty?
+  node['logadm']['rotated_logs'].each do |service, log_config|
+    logadm service do
+      path log_config['path']
+      copy log_config['copy']
+      count log_config['count']
+      size log_config['size']
+      period log_config['period']
+      template log_config['template']
+      gzip log_config['gzip']
+      action :create
+    end
+  end
+end

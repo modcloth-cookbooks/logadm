@@ -38,3 +38,5 @@ default['logadm']['patterns']['apache'] = '-C 5 -c -s 100m /var/log/httpd/*.log'
 default['logadm']['patterns']['lighttpd'] = "-C 5 -c -s 100m '/var/log/lighttpd/{access,error}.log'"
 default['logadm']['patterns']['nginx'] = "-C 5 -c -s 100m '/var/log/nginx/{access,error}.log'"
 default['logadm']['patterns']['mysql'] = "-C 5 -c -s 100m '/var/log/mysql/{error,slowquery}.log'"
+
+default['logadm']['rotated_logs'] = {}
