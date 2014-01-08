@@ -32,11 +32,13 @@ default['logadm']['enabled_patterns']['apache'] = false
 default['logadm']['enabled_patterns']['lighttpd'] = false
 default['logadm']['enabled_patterns']['nginx'] = false
 default['logadm']['enabled_patterns']['mysql'] = false
+default['logadm']['enabled_patterns']['/var/log'] = false
 
 default['logadm']['patterns']['smf'] = '-C 3 -c -s 1m /var/svc/log/*.log'
 default['logadm']['patterns']['apache'] = '-C 5 -c -s 100m /var/log/httpd/*.log'
 default['logadm']['patterns']['lighttpd'] = "-C 5 -c -s 100m '/var/log/lighttpd/{access,error}.log'"
 default['logadm']['patterns']['nginx'] = "-C 5 -c -s 100m '/var/log/nginx/{access,error}.log'"
 default['logadm']['patterns']['mysql'] = "-C 5 -c -s 100m '/var/log/mysql/{error,slowquery}.log'"
+default['logadm']['patterns']['/var/log'] = "-c -s 100m  -p 7d  -z 1 '/var/log/*.log'"
 
 default['logadm']['rotated_logs'] = {}
