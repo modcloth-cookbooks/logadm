@@ -28,3 +28,6 @@ nginx <%= node['logadm']['patterns']['nginx'] %>
 <% if node['logadm']['enabled_patterns']['mysql'] %>
 mysql <%= node['logadm']['patterns']['mysql'] %>
 <% end %>
+<% if node['logadm']['enabled_patterns']['/var/log'] %>
+/var/log <%= node['logadm']['patterns']['/var/log'] %>
+<% end %>
