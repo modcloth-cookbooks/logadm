@@ -31,12 +31,15 @@ Manage logadm.
 - :name: name attribute. Name of the log to set logadm rules to manage
 - :manual_command: override all settings with one-liner command
 - :path: path to log
-- :count: number of 
+- :count: number of logs to keep after rotating
 - :size: size is number followed by bytes...kilobytes...etc
 - :period: time period to rotate logs
 - :copy: copy and truncate
 - :template: template for naming of logs
-- :gzip: specify count of which log to start compressing ( default 1 )
+- :gzip: count of rotated logs to keep uncompressed ( default: do not gzip ) ( specify 0 to compress all files )
+- :use_local_time: use local time rather than UTC when name rotated files
+- :post_command: execute command after renaming log files
+- :pre_command: execute command before renaming log files
 
 ### Providers
 
