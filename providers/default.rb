@@ -32,7 +32,7 @@ action :create do
     args << " -C #{new_resource.count}" if new_resource.count
     args << " -s #{new_resource.size}" if new_resource.size
     args << " -p #{new_resource.period}"	if new_resource.period
-    args << " -t #{new_resource.template}"  if new_resource.template
+    args << " -t '#{new_resource.template}'"  if new_resource.template
     args << " -z #{new_resource.gzip}"  if new_resource.gzip
     cmd  << ' ' + args.join(' ')
   end
