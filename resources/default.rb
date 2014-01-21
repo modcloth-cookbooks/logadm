@@ -79,3 +79,6 @@ attribute :period, :regex => /^[0-9]+[hdwmy]$/
 attribute :copy, :default => true
 attribute :template, :kind_of => String
 attribute :gzip, :kind_of => Integer
+attribute :use_local_time, :kind_of => [TrueClass, FalseClass], :default => false
+attribute :post_command, :kind_of => [String, NilClass], :default => nil
+attribute :pre_command, :kind_of => [String, NilClass], :default => nil

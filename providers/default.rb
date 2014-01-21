@@ -29,7 +29,10 @@ action :create do
     cmd = "logadm -w #{new_resource.name} '#{new_resource.path}'"
     args = []
     args << "-c" if new_resource.copy
+    args << " -a '#{new_resource.post_command}'" if new_resource.post_command
+    args << " -b '#{new_resource.pre_command}'" if new_resource.pre_command
     args << " -C #{new_resource.count}" if new_resource.count
+    args << " -l" if new_resource.use_local_time
     args << " -s #{new_resource.size}" if new_resource.size
     args << " -p #{new_resource.period}"	if new_resource.period
     args << " -t '#{new_resource.template}'"  if new_resource.template
