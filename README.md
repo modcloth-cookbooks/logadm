@@ -61,7 +61,7 @@ logadm "chef-client" do
   action :create  
 end
 
-# nginx -C 5 -c -s 100m '/var/log/nginx/{access,error}.log'
+# logadm -C 5 -c -s 100m '/var/log/nginx/{access,error}.log'
 logadm "nginx" do
   path "/var/log/nginx/{localhost.access,error}.log"
   copy true
